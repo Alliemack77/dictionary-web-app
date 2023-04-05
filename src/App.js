@@ -1,24 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import Header from "./components/Header";
+import Searchbar from "./components/Searchbar";
+import Entry from "./components/Entry";
+import axios from "axios";
+import { useState } from "react";
+import mockEntry from "./mock-data/mockEntry";
 
 function App() {
+  const [word, setWord] = useState(mockEntry)
+
+  const searchWord = (input) => {
+    const options = {
+      method: "GET", 
+      url:  `https://api.dictionaryapi.dev/api/v2/entries/en/${input}`
+    }
+
+    axios.request(options).then((response) => {
+      console.log(response.data)
+      setWord(response.data)
+    }).catch((error) => console.log(error))
+  }
+
+  
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {/* <Header /> */}
+      <Searchbar searchWord={searchWord}/>
+      <Entry word={word}/>
+    </>
   );
 }
 
