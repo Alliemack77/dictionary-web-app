@@ -3,10 +3,11 @@ import Searchbar from "./components/Searchbar";
 import Entry from "./components/Entry";
 import axios from "axios";
 import { useState } from "react";
-import mockEntry from "./mock-data/mockEntry";
+import word from "./mock-data/mockEntry";
 
 function App() {
-  const [word, setWord] = useState(mockEntry)
+  const [searchTerm, setSearchTerm,] = useState(word)
+  console.log(searchTerm)
 
   const searchWord = (input) => {
     const options = {
@@ -15,19 +16,20 @@ function App() {
     }
 
     axios.request(options).then((response) => {
-      console.log(response.data)
-      setWord(response.data)
+      setSearchTerm(response.data)
     }).catch((error) => console.log(error))
   }
 
   
 
   return (
-    <>
-      {/* <Header /> */}
-      <Searchbar searchWord={searchWord}/>
-      <Entry word={word}/>
-    </>
+    <main>
+      <section className='dictionary'>
+        {/* <Header /> */}
+        <Searchbar searchWord={searchWord}/>
+        <Entry searchTerm={searchTerm}/>
+      </section>
+    </main>
   );
 }
 
