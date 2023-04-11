@@ -10,9 +10,11 @@ const Button = ({icon, audioRef}) => {
  
     if(icon === 'search') {
         return (
-            <button className='button search'type='search'>
-                <CiSearch/>
-                <span className='sr-only'>Search</span>
+            <button 
+                className='button search' 
+                type='search'>
+                    <CiSearch/>
+                    <span className='sr-only'>Search</span>
             </button>
         )
     }

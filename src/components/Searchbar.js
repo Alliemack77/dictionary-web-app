@@ -11,7 +11,7 @@ const Searchbar = ({searchWord}) => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form className='search-bar' onSubmit={handleSubmit}>
             <input 
                 value={input}
                 onChange={(e) => {setInput(e.target.value)}}

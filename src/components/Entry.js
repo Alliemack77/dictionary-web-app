@@ -12,18 +12,19 @@ const Entry = ({searchTerm}) => {
     return (
         <article className='entry'>
             <div className='word'>
-                <h1>{word.word}</h1>
-                {word.phonetic ? <p>{word.phonetic}</p> : null}
-                <AudioTrack 
-                    audioRef={audioRef} 
-                    track={track}
-                />
-                <Button icon='play' audioRef={audioRef}/>
+                <div>
+                    <h1 className='fs-700 ff-accent'>{word.word}</h1>
+                    {word.phonetic ? <p className='text-accent'>{word.phonetic}</p> : null}
+                </div>
+                <div>
+                    <AudioTrack audioRef={audioRef} track={track}/>
+                    <Button icon='play' audioRef={audioRef}/>
+                </div>
             </div>
             {word.meanings.map((item) => {
                 return (
                     <div>
-                        <h2>{item.partOfSpeech}</h2>
+                        <h2 className='italic'>{item.partOfSpeech}</h2>
                         <p>Meaning</p>
                      
                         {item.partOfSpeech === 'noun' && (

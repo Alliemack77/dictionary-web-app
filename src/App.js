@@ -6,7 +6,8 @@ import { useState } from "react";
 import word from "./mock-data/mockEntry";
 
 function App() {
-  const [searchTerm, setSearchTerm,] = useState(word)
+  const [searchTerm, setSearchTerm] = useState(word)
+  const [isDarkMode, setIsDarkMode] = useState(false)
   console.log(searchTerm)
 
   const searchWord = (input) => {
@@ -20,12 +21,10 @@ function App() {
     }).catch((error) => console.log(error))
   }
 
-  
-
   return (
-    <main>
+    <main className='container'>
       <section className='dictionary'>
-        {/* <Header /> */}
+        <Header isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode}/>
         <Searchbar searchWord={searchWord}/>
         <Entry searchTerm={searchTerm}/>
       </section>

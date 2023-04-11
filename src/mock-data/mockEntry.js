@@ -1,13 +1,13 @@
 const word = [{
     word: "hello",
-    phonetic: "həˈləʊ",
+    phonetic: "/həˈləʊ/",
     phonetics: [
         {
-            text: "həˈləʊ",
+            text: "/həˈləʊ/",
             audio: "//ssl.gstatic.com/dictionary/static/sounds/20200429/hello--_gb_1.mp3"
         },
         {
-            text: "hɛˈləʊ"
+            text: "/hɛˈləʊ/"
         }
     ],
     origin: "early 19th century: variant of earlier hollo ; related to holla.",
