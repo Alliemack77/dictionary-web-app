@@ -19,7 +19,7 @@ const word = [{
             definitions: [
                 {
                     definition: "an utterance of ‘hello’; a greeting.",
-                    example: "she was getting polite nods and hellos from people",
+                    example: "She was getting polite nods and hellos from people.",
                 }
             ]
         },
@@ -30,7 +30,7 @@ const word = [{
             definitions: [
                 {
                     definition: "say or shout ‘hello’.",
-                    example: "I pressed the phone button and helloed",
+                    example: "I pressed the phone button and helloed.",
                 }
             ]
         },
@@ -41,7 +41,7 @@ const word = [{
             definitions: [
                 {
                     definition: "used as a greeting or to begin a phone conversation.",
-                    example: "hello there, Katie!",
+                    example: "Hello there, Katie!",
                 }
             ]
         },

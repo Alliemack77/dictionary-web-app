@@ -3,7 +3,8 @@
 $clr-black: hsl(100, 0, 0);
 $clr-white: hsl(0, 100, 100);
 $clr-grey: hsl(0, 0%, 52%);
-$clr-grey-light: hsl(0, 0%, 96%);
+$clr-grey-dark: hsl(0, 0%, 20%);
+$clr-grey-light: hsl(0, 0%, 93%);
 $clr-accent: hsl(274, 93%, 62%);
 $clr-accent-light: hsl(276, 81%, 90%);
 
@@ -11,25 +12,61 @@ $clr-accent-light: hsl(276, 81%, 90%);
 $ff-primary: 'Open Sans', sans-serif;
 $ff-accent: 'Courier Prime', monospace;
 
+$fs-700: 3rem;
+$fs-600: 2.5rem;
+$fs-500: 1.25rem;
+$fs-400: 1rem;
+
 $fw-700: 700;
 $fw-600: 600;
 $fw-500: 500;
 $fw-400: 400;
 $fw-300: 300;
 
-$fs-700: 3rem;
-$fs-600: 2rem;
-$fs-500: 1.5rem;
-$fs-400: 1rem;
-
 // color themes
-// $scheme-dark: 
-// $scheme-light: 
-
+// bg-color, text-color, input-bg, toggle-bg, line-color, icon-color,  
+$scheme-dark: $clr-black, $clr-white, $clr-grey-dark, $clr-accent, $clr-accent, $clr-accent;
+$scheme-light: $clr-white, $clr-black, $clr-grey-light, $clr-grey-light, $clr-grey-light, $clr-grey;
 
 // mixins
+// dark and light mode color scheme rules
+// $icon-color
+@mixin color-schemes($bg-color, $text-color, $input-bg, $toggle-bg, $line-color, $icon-color) {
+  color: $text-color;
+  background-color: $bg-color;
+
+  .dictionary svg {
+    fill: $icon-color;
+  }
+
+  .search-bar {
+    background-color: $input-bg;
+  }
+
+  .button.theme-toggle {
+    background-color: $toggle-bg;
+  }
+
+  .definition-container h2 .deco {
+    background-color: $line-color;
+  }
 
 
+}
+
+// use flex to center on the horizontal and verticle
+@mixin center-xy {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// use flex to center on the horizontal, with space-between
+@mixin center-space-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
 
 /* Reset */
@@ -48,21 +85,20 @@ p {
   margin: 0;
 }
 
-ul[role='list'],
-ol[role='list'] {
-  list-style: none;
-}
-
 html:focus-within {
   scroll-behavior: smooth;
 }
 
 body {
-  min-height: 100vh;
+  // min-height: 100vh;
   text-rendering: optimizeSpeed;
   line-height: 1.5;
   font-family: $ff-primary;
   font-size: $fs-400;
+}
+
+main {
+  min-height: 100vh;
 }
 
 img {
@@ -72,7 +108,8 @@ img {
 
 input,
 button {
-  font: inherit;
+  font-family: $ff-accent;
+  font-size: inherit;
 }
 
 
@@ -85,36 +122,81 @@ button {
 .fs-500 { font-size: $fs-500; }
 .fs-400 { font-size: $fs-400; }
 
+.fw-700 { font-weight: $fw-700; }
+.fw-600 { font-weight: $fw-600; }
+.fw-500 { font-weight: $fw-500; }
+.fw-400 { font-weight: $fw-400; }
+
 .text-accent {  color: $clr-accent }
+.text-grey {  color: $clr-grey }
 
 .italic { font-style: italic;}
 
 .container {
-  border: solid red 2px;
   width: min(50ch, 100vw - 2rem);
-  margin-inline: auto;
+  margin: 2rem auto;
+}
+
+.flex {
+  display: flex;
+  gap: 1rem;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
 }
 
 .sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap; /* added line */
-    border: 0;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap; /* added line */
+  border: 0;
 }
+
+.dark {
+  @include color-schemes($scheme-dark ...);
+}
+
+.light {
+  @include color-schemes($scheme-light ...);
+}
+
 
 /* Components */
 .button {
   border: none;
+  position: relative;
 
   &.theme-toggle {
-    background-color: transparent;
+    // background-color:  $clr-grey;
+    height: 20px;
+    width: 40px;
+    border-radius: 50px;
     display: inline-flex;
     align-items: center;
+    padding: 0;
+
+    &::after {
+      position: absolute;
+      left: 2px;
+      top: 1;
+      content: "";
+      height: 15px;
+      width: 15px;
+      border-radius: 50%;
+      background-color: $clr-white;
+      transition: left .2s ease-out 0s;
+    }
+    
+    &.checked::after {
+      left: 23px;
+    }
+
   }
 
   &.search {
@@ -128,10 +210,8 @@ button {
   }
 
   &.play {
+    @include center-xy;
     background-color: $clr-accent-light;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     height: 50px;
     width: 50px;
     aspect-ratio: 1/1;
@@ -145,21 +225,21 @@ button {
 }
 
 header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  @include center-space-between;
 
   & svg {
-    fill: $clr-grey;
     font-size: 2rem;
+  }
+
+  & .switch-container {
+    @include center-xy;
+    gap: 1rem;
   }
 }
 
 .search-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: $clr-grey-light;
+  @include center-space-between;
+
   padding: .5rem 1rem;
   border-radius: 10px;
 
@@ -170,16 +250,50 @@ header {
 }
 
 .entry {
+  & > * + * {
+    margin-block-start: 1rem;
+  }
 
   & .word {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    @include center-space-between;
+  }
+
+  & .definition-container {
+    margin-block-start: 1rem;
+
+    & h2 {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+  
+      & .deco {
+        flex-basis: 100%;
+        display: block;
+        height: 1px;
+      }
+    }
+  }
+
+  & .definition-container p {
+    margin-block-start: 1rem;
+  }
+
+  & .definition-container > ul {
+    padding: 0 1rem;
+  }
+
+  & .definition-container > ul > li {
+    margin-block-start: 1rem;
+  }
+
+  & .definition-container > ul > li::marker {
+    color: $clr-accent;
   }
 }
 
-
-.dictionary {
-  padding: 1rem;
+// applies 2rem to margin-top for every child of dictionary EXCEPT the first
+.dictionary > * + * {
+  margin-top: 2rem;
 }
+
 

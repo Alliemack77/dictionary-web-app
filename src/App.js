@@ -22,12 +22,12 @@ function App() {
   }
 
   return (
-    <main className='container'>
-      <section className='dictionary'>
+    <main className={`${isDarkMode ? "dark" : "light"}`}>
+      <article className='dictionary container'>
         <Header isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode}/>
         <Searchbar searchWord={searchWord}/>
         <Entry searchTerm={searchTerm}/>
-      </section>
+      </article>
     </main>
   );
 }
