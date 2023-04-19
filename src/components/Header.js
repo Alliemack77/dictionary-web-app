@@ -1,5 +1,5 @@
 import { BiBookAlt } from 'react-icons/bi'
-import {BsFillSunFill, BsFillMoonFill} from 'react-icons/bs' 
+import Button from './Button'
 
 const Header = ({isDarkMode, setIsDarkMode}) => {
 
@@ -12,17 +12,7 @@ const Header = ({isDarkMode, setIsDarkMode}) => {
         <header aria-label='dictionary'>
             <BiBookAlt />
             <h1 className='sr-only'>Dictionary App</h1>
-            <div className='switch-container'>
-                <button 
-                    className={`button theme-toggle ${isDarkMode? "checked" : ""}`} 
-                    type='button' 
-                    role='switch'
-                    aria-checked={isDarkMode}
-                    onClick={toggleTheme}>
-                    <span className='sr-only'>dark mode toggle</span>
-                </button>
-                <BsFillMoonFill />
-            </div>
+            <Button icon='theme-toggle' isDarkMode={isDarkMode} handleToggle={toggleTheme}/>
         </header>
     )
 }

@@ -1,14 +1,11 @@
-import Header from "./components/Header";
-import Searchbar from "./components/Searchbar";
-import Entry from "./components/Entry";
 import axios from "axios";
 import { useState } from "react";
 import word from "./mock-data/mockEntry";
+import Dictionary from "./components/Dictionary";
 
 function App() {
   const [searchTerm, setSearchTerm] = useState(word)
   const [isDarkMode, setIsDarkMode] = useState(false)
-  console.log(searchTerm)
 
   const searchWord = (input) => {
     const options = {
@@ -18,16 +15,18 @@ function App() {
 
     axios.request(options).then((response) => {
       setSearchTerm(response.data)
-    }).catch((error) => console.log(error))
+    }).catch((error) => alert("Oops try again"))
   }
 
   return (
     <main className={`${isDarkMode ? "dark" : "light"}`}>
-      <article className='dictionary container'>
-        <Header isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode}/>
-        <Searchbar searchWord={searchWord}/>
-        <Entry searchTerm={searchTerm}/>
-      </article>
+      <Dictionary
+        searchWord={searchWord}
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
+        isDarkMode={isDarkMode}
+        setIsDarkMode={setIsDarkMode}
+        />
     </main>
   );
 }

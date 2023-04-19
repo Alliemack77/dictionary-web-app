@@ -1,13 +1,18 @@
 import { CiSearch } from 'react-icons/ci'
 import { BsPlayFill } from 'react-icons/bs'
+import {BsFillMoonFill} from 'react-icons/bs' 
 
-
-const Button = ({icon, audioRef}) => {
+const Button = ({
+    icon, 
+    audioRef, 
+    isDarkMode, 
+    handleToggle
+}) => {
 
     const playTrack = () => {
         audioRef.current.play()
     }
- 
+    
     if(icon === 'search') {
         return (
             <button 
@@ -28,6 +33,22 @@ const Button = ({icon, audioRef}) => {
                 <BsPlayFill/>
                 <span className='sr-only'>Play</span>
             </button>
+        )
+    }
+
+    if(icon === 'theme-toggle') {
+        return (
+            <div className='switch-container'>
+                <button 
+                    className={`button theme-toggle ${isDarkMode? "checked" : ""}`} 
+                    type='button' 
+                    role='switch'
+                    aria-checked={isDarkMode}
+                    onClick={handleToggle}>
+                    <span className='sr-only'>dark mode toggle</span>
+                </button>
+                <BsFillMoonFill />
+            </div>
         )
     }
 

@@ -24,14 +24,13 @@ $fw-400: 400;
 $fw-300: 300;
 
 // color themes
-// bg-color, text-color, input-bg, toggle-bg, line-color, icon-color,  
-$scheme-dark: $clr-black, $clr-white, $clr-grey-dark, $clr-accent, $clr-accent, $clr-accent;
-$scheme-light: $clr-white, $clr-black, $clr-grey-light, $clr-grey-light, $clr-grey-light, $clr-grey;
+// bg-color, text-color, input-bg, toggle-bg, line-color, icon-color, input-color  
+$scheme-dark: $clr-black, $clr-white, $clr-grey-dark, $clr-accent, $clr-accent, $clr-accent, $clr-white;
+$scheme-light: $clr-white, $clr-black, $clr-grey-light, $clr-grey-light, $clr-grey-light, $clr-grey, $clr-black;
 
 // mixins
 // dark and light mode color scheme rules
-// $icon-color
-@mixin color-schemes($bg-color, $text-color, $input-bg, $toggle-bg, $line-color, $icon-color) {
+@mixin color-schemes($bg-color, $text-color, $input-bg, $toggle-bg, $line-color, $icon-color, $input-color) {
   color: $text-color;
   background-color: $bg-color;
 
@@ -41,6 +40,10 @@ $scheme-light: $clr-white, $clr-black, $clr-grey-light, $clr-grey-light, $clr-gr
 
   .search-bar {
     background-color: $input-bg;
+
+    input {
+      color: $input-color;
+    }
   }
 
   .button.theme-toggle {
@@ -50,8 +53,6 @@ $scheme-light: $clr-white, $clr-black, $clr-grey-light, $clr-grey-light, $clr-gr
   .definition-container h2 .deco {
     background-color: $line-color;
   }
-
-
 }
 
 // use flex to center on the horizontal and verticle
@@ -90,7 +91,7 @@ html:focus-within {
 }
 
 body {
-  // min-height: 100vh;
+  min-height: 100vh;
   text-rendering: optimizeSpeed;
   line-height: 1.5;
   font-family: $ff-primary;
@@ -134,7 +135,7 @@ button {
 
 .container {
   width: min(50ch, 100vw - 2rem);
-  margin: 2rem auto;
+  margin-inline: auto;
 }
 
 .flex {
@@ -216,11 +217,20 @@ button {
     width: 50px;
     aspect-ratio: 1/1;
     border-radius: 50%;
+    transition-duration: .55s;
+    transform-origin: center;
+    transform-box: fill-box;
 
     > svg {
       fill: $clr-accent;
       font-size: 1.5rem;
     } 
+
+    &:hover, 
+    &:focus-within
+    {
+      transform: scale(1.10);
+    }
   }
 }
 
@@ -291,9 +301,11 @@ header {
   }
 }
 
-// applies 2rem to margin-top for every child of dictionary EXCEPT the first
-.dictionary > * + * {
-  margin-top: 2rem;
+.dictionary {
+  padding-block-start: 2rem;
+
+  // applies 2rem to margin-top for every child of dictionary EXCEPT the first
+  & > * + * {
+    margin-top: 2rem;
+  }
 }
-
-
