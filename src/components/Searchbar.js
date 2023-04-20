@@ -18,7 +18,7 @@ const Searchbar = ({searchWord}) => {
                 type='text' 
                 placeholder='Enter a word'
             ></input>
-            <Button icon='search' />
+            <Button icon='search'/>
         </form>
 
     )

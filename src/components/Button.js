@@ -3,7 +3,7 @@ import { BsPlayFill } from 'react-icons/bs'
 import {BsFillMoonFill} from 'react-icons/bs' 
 
 const Button = ({
-    icon, 
+    icon,
     audioRef, 
     isDarkMode, 
     handleToggle
