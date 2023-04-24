@@ -1,9 +1,12 @@
-import { useRef } from 'react'
+import { useContext, useRef } from 'react'
+import { WordContext } from '../context/context'
 import AudioTrack from './AudioTrack'
 import Button from './Button'
 
-const Entry = ({searchTerm}) => {
+const Entry = () => {
     const audioRef = useRef()
+
+    const {searchTerm} = useContext(WordContext)
 
     let word = searchTerm[0]
     let synonyms = word.meanings[0].synonyms.length ? word.meanings[0].synonyms : false

@@ -1,8 +1,10 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
+import { WordContext } from "../context/context"
 import Button from './Button'
 
-const Searchbar = ({searchWord}) => {
+const Searchbar = () => {
     const [input, setInput] = useState("")
+    const {searchWord} = useContext(WordContext)
 
     const handleSubmit = (e) => {
         e.preventDefault()
