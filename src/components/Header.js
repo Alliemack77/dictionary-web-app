@@ -1,12 +1,12 @@
 import { useContext } from 'react'
-// import { ThemeContext } from '../context/themeContext'
-import { WordContext } from '../context/context'
+import { ThemeContext } from '../context/themeContext'
+// import { WordContext } from '../context/context'
 import { BiBookAlt } from 'react-icons/bi'
 import Button from './Button'
 
 const Header = () => {
 
-    const {setIsDarkMode} = useContext(WordContext)
+    const {setIsDarkMode} = useContext(ThemeContext)
  
     const  toggleTheme = (e) => {
         e.preventDefault()

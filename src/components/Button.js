@@ -1,12 +1,12 @@
 import { useContext } from 'react'
-// import { ThemeContext } from '../context/themeContext'
-import { WordContext } from '../context/context'
+import { ThemeContext } from '../context/themeContext'
+// import { WordContext } from '../context/context'
 import { CiSearch } from 'react-icons/ci'
 import { BsPlayFill } from 'react-icons/bs'
 import {BsFillMoonFill} from 'react-icons/bs' 
 
 const Button = ({icon, audioRef, handleToggle}) => {
-    const {isDarkMode} = useContext(WordContext)
+    const {isDarkMode} = useContext(ThemeContext)
 
     const playTrack = () => {
         audioRef.current.play()

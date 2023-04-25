@@ -9,7 +9,7 @@ const WordContext = createContext()
 const WordProvider = ({children}) => {
     // declaring state
     const [searchTerm, setSearchTerm] = useState(word)
-    const [isDarkMode, setIsDarkMode] = useState(false)
+    // const [isDarkMode, setIsDarkMode] = useState(false)
 
 
     // fetching data
@@ -30,9 +30,7 @@ const WordProvider = ({children}) => {
             value={{
                 searchTerm, 
                 setSearchTerm,
-                searchWord, 
-                isDarkMode, 
-                setIsDarkMode
+                searchWord
             }}>
                 {children}
         </WordContext.Provider>

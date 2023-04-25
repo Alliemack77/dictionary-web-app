@@ -1,6 +1,6 @@
 import React from 'react'
-import { WordProvider } from './context/context'
 import ReactDOM from 'react-dom/client'
+import { WordProvider } from './context/context'
 import App from './App'
 import './scss/main.scss'
 

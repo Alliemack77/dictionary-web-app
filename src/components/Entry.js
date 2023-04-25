@@ -28,7 +28,7 @@ const Entry = () => {
             </div>
             {word.meanings.map((item) => {
                 return (
-                    <div className='definition-container'>
+                    <div className='definition-container' key={item.text}>
                         <h2 className='fs-500 ff-accent'>{item.partOfSpeech}<span className='deco'></span></h2>
                         <p className='text-grey'>Meaning</p>
                      
@@ -62,7 +62,7 @@ const Entry = () => {
                                         return (
                                             <>
                                                 <li key={item.text}>{def.definition}
-                                                    <p className='text-grey' key={item.word}>
+                                                    <p className='text-grey' key={def.example}>
                                                         <span className='sr-only'>Example: </span>
                                                         {def.example === undefined ? null : `"${example}"`}
                                                     </p>
