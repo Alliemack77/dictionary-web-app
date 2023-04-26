@@ -26,3 +26,6 @@ Users should be able to:
 - Switch between light and dark themes
 - View the optimal layout for the interface depending on their device's screen size
 - See hover and focus states for all interactive elements on the page
+
+## See My Solution Live:
+[Dictionary Web App](https://fem-dictionary-web-app.netlify.app/)
